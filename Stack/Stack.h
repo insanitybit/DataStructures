@@ -25,7 +25,7 @@ private:
 		std::shared_ptr<Node> below;
 	};
 
-	std::shared_ptr<Node> head;
+	std::shared_ptr<Node> tail;
 	
 };
 
@@ -38,8 +38,8 @@ template<class Data>
 void Stack<Data>::push(const Data& d){
 	std::shared_ptr<Node> node(new Node);
 	node->data = d;
-	node->below = head;
-	head = node;
+	node->below = tail;
+	tail = node;
 
 	stack_size++;
 }
@@ -48,7 +48,7 @@ template<class Data>
 void Stack<Data>::pop(){
 	assert(stack_size > 0);
 
-	head = head->below;
+	tail = tail->below;
 	stack_size--;
 }
 
@@ -59,7 +59,7 @@ size_t Stack<Data>::size(){
 
 template<class Data>
 Data& Stack<Data>::top(){
-	return head->data;
+	return tail->data;
 }
 
 #endif
